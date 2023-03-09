@@ -1,0 +1,25 @@
+{
+  "name": "server",
+  "version": "1.0.0",
+  "description": "music app project",
+  "main": "index.js",
+  "scripts": {
+    "dev": "nodemon app.js ",
+    "start": "node app.js connected to database",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "iboytech",
+  "license": "MIT",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "dotenv": "^16.0.3",
+    "express": "^4.18.2",
+    "firebase-admin": "^11.5.0",
+    "jsonwebtoken": "^9.0.0",
+    "jsrsasign": "^10.6.1",
+    "jwt-js-decode": "^1.5.1",
+    "mongoose": "^7.0.0",
+    "nodemon": "^2.0.21",
+    "postman": "^0.2.0"
+  }
+}
