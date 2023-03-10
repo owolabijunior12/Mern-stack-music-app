@@ -21,6 +21,14 @@ const router = require("./routes/auth");
 const { refreshToken } = require("firebase-admin/app");
 app.use("/api/user/",userRoutes)
 
+const artistRoutes =require("./routes/artist");
+app.use("/api/artist/",artistRoutes);
+
+const albumRoutes = require("./routes/album")
+app.use("/api/album/",albumRoutes);
+
+const songsRoutes = require("./routes/song");
+app.use("/api/song/",songsRoutes);
 
 
 mongoose.connect(process.env.DB_STRINGS,{useNewurlParser : true});
