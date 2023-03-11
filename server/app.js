@@ -9,6 +9,7 @@ const secret = crypto.randomBytes(32).toString('hex');
 console.log(secret);
 app.use(cors({origin: true}))
 
+app.use(express.json())
 
 
 app.get("/",(req, res)=>{   
