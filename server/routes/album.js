@@ -1,5 +1,5 @@
-const express = require("express");
-const router = express.Router();
+const router = require("express").Router();
+
 const Album = require("../modules/album");
 
 router.post("/save", async (req, res, next) => {
