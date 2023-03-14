@@ -64,9 +64,30 @@ const updateNewData = async(decodeValue, req ,res)=>{
       res.status(400).send({success :false, msg :error})
     }
 }
+router.get("/getUser", async(req,res)=>{
+  const option  ={
+    sort:{
+      createdAt: 1, 
+    },
+  }
+  const cursor = await user.find(option);
+  if (cursor.length > 0) {
+    return res.status(200).send({ success: true, data: cursor });
+  } else {
+    return res.status(401).send({ success: false, msg: "not found" });
+  }
+})
 
 
 module.exports = router;
 
 
 
+// async function someFunction(option) {
+//   const cursor = await user.find(option);
+//   if (cursor.length > 0) {
+//     return res.status(200).send({ success: true, data: cursor });
+//   } else {
+//     return res.status(401).send({ success: false, msg: "not found" });
+//   }
+// }
