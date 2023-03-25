@@ -98,17 +98,21 @@ const updateNewData = async (decodeValue, req, res) => {
 
 
 router.get('/getUser', async (req, res) => {
-  const options = {
-    sort: { createdAt: 1 },
-    user:user.user
-  };
-
-  const cursor = await user.find(options);
-  if (cursor) {
-    res.status(200).send({ success: true, user:cursor });
-  } else {
-    res.status(200).send({ success: true, msg: 'No Data Found' });
+  try {
+    const options = {
+      sort: { createdAt: 1 }
+    };
+    const users = await user.find({}, null, options);
+    if (users.length > 0) {
+      res.status(200).send({ success: true, users });
+    } else {
+      res.status(200).send({ success: true, msg: 'No Data Found' });
+    }
+  } catch (error) {
+    console.log(error);
+    res.status(500).send({ success: false, msg: 'Internal Server Error' });
   }
 });
+
 
 module.exports = router;
