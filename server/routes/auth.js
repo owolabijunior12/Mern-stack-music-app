@@ -69,30 +69,30 @@ const updateNewData = async (decodeValue, req, res) => {
 //! Route to authenticate user
 
 
-// router.get('/login', async (req, res) => {
-//   try {
+router.get('/login', async (req, res) => {
+  try {
 //     //! Get the authorization header and decode the value
 
 
-//     const { authorization } = req.headers;
-//     const [, token] = authorization.split(' ');
-//     const decodeValue = await admin.auth().verifyIdToken(token);
+    const { authorization } = req.headers;
+    const [, token] = authorization.split(' ');
+    const decodeValue = await admin.auth().verifyIdToken(token);
 
-//     if (!decodeValue) {
-//       return res.status(401).json({ message: 'Unauthorized' });
-//     }
+    if (!decodeValue) {
+      return res.status(401).json({ message: 'Unauthorized' });
+    }
 
-//     const userExists = await user.findOne({ user_id: decodeValue.user_id });
-//     if (!userExists) {
-//       newUserData(decodeValue, req, res);
-//     } else {
-//       updateNewData(decodeValue, req, res);
-//     }
-//   } catch (error) {
-//     console.error(error);
-//     return res.status(401).json({ message: 'Invalid token' });
-//   }
-// });
+    const userExists = await user.findOne({ user_id: decodeValue.user_id });
+    if (!userExists) {
+      newUserData(decodeValue, req, res);
+    } else {
+      updateNewData(decodeValue, req, res);
+    }
+  } catch (error) {
+    console.error(error);
+    return res.status(401).json({ message: 'Invalid token' });
+  }
+});
 
 //! Route to get all users
 
@@ -111,6 +111,19 @@ router.get('/getUser', async (req, res) => {
   } catch (error) {
     console.log(error);
     res.status(500).send({ success: false, msg: 'Internal Server Error' });
+  }
+});
+router.put("/updateRole/:userId", async (req, res) => {
+  const filter = { _id: req.params.userId };
+  const role = req.body.role;
+ 
+  const options = { new: true }; // Return the updated document
+
+  try {
+    const result = await user.findByIdAndUpdate(filter, { role }, options);
+    res.status(200).send({ user: result });
+  } catch (error) {
+    res.status(401).send({ success: false, msg: error });
   }
 });
 
