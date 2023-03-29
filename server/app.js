@@ -25,6 +25,9 @@ app.use("/api/user/",userRoutes)
 const artistRoutes =require("./routes/artist");
 app.use("/api/artist/",artistRoutes);
 
+const musicRoutes =require("./routes/music");
+app.use("/api/music/",musicRoutes);
+
 const albumRoutes = require("./routes/album")
 app.use("/api/album/",albumRoutes);
 
