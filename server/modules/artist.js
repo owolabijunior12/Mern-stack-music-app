@@ -16,11 +16,7 @@ const artistSchema = mongoose.Schema(
         instagram:{
             type: String,
             required: true,
-        },
-        facebook:{
-            type: String,
-            required: true,
-        },    
+        }     
     },
     {timstramps : true}
 );

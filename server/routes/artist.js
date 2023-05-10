@@ -8,8 +8,7 @@ router.post("/save", async (req, res) => {
       name: req.body.name,
       imageURL: req.body.imageURL,
       twitter: req.body.twitter,
-      instagram: req.body.instagram,
-      facebook: req.body.facebook,
+      instagram: req.body.instagram,      
     });
     res.status(200).send({ success: true, artist: newArtist });
   } catch (error) {
